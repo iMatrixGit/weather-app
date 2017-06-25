@@ -2,11 +2,14 @@
 Weather forecast information for the next 5 days
 
 ## Development
-### Setup
+### Installation
 ```
 git clone https://github.com/iMatrixGit/weather-app.git
+```
+```
 npm install
 ```
+
 ### Build
 ```
 npm run build
