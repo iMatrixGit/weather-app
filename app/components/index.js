@@ -6,6 +6,7 @@ import WindInfo from './WindInfo';
 import Input from './Input';
 import Button from './Button';
 import Loader from './Loader';
+import Image from './Image';
 
 export {
     Text,
@@ -15,5 +16,6 @@ export {
     WindInfo,
     Input,
     Button,
-    Loader
+    Loader,
+    Image
 }

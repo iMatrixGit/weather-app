@@ -11,7 +11,7 @@ const fetchForecastData = filter => new Promise((resolve, reject) => {
         if (err) {
             reject(err);
         } else {
-            reject(body);
+            resolve(body);
         }
     });
 });

@@ -2,7 +2,7 @@ import React, { PureComponent, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { COUNTRY_FLAGS_CDN_URL } from '../constants/utils';
-import { Text, Loader, TemperatureAggregated } from '../components';
+import { Text, Loader, TemperatureAggregated, Image } from '../components';
 import { aggregatedTempSelector } from '../utils/selectors';
 
 class CityInfoContainer extends PureComponent {
@@ -16,7 +16,11 @@ class CityInfoContainer extends PureComponent {
 
         return (
             <div className="info-content">
-                <img src={`${COUNTRY_FLAGS_CDN_URL}${country.toLowerCase()}.svg`} width={32} height={28}/>
+                <Image
+                    src={`${COUNTRY_FLAGS_CDN_URL}${country.toLowerCase()}.svg`}
+                    width={32}
+                    height={28}
+                />
                 <Text className="city-name" text={text} />
                 <TemperatureAggregated
                     minLow={aggregatedTemp.getIn(['min', 0])}

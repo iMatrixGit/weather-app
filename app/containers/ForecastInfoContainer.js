@@ -28,6 +28,7 @@ class ForecastInfoContainer extends PureComponent {
                 date={getFormattedDate(dt)}
                 description={weather.getIn([0, 'description'])}
                 wind={speed}
+                icon={weather.getIn([0, 'icon'])}
                 tempMin={temp.get('min')}
                 tempMax={temp.get('max')}
             />
