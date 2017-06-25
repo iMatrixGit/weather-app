@@ -1,12 +1,17 @@
 import React, { PureComponent, PropTypes } from 'react';
+import classNames from 'classnames';
 
 export default class Button extends PureComponent {
     render() {
-        const { type, text, disabled, onClick } = this.props;
+        const { type, text, className, disabled, onClick } = this.props;
 
         return (
             <button
-                className="button"
+                className={classNames(
+                    'button',
+                    className,
+                    { 'disabled': disabled }
+                )}
                 type={type}
                 disabled={disabled}
                 onClick={onClick}
