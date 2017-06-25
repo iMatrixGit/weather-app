@@ -1,5 +1,5 @@
 import React, { PureComponent, PropTypes } from 'react';
-import { TemperatureRange } from '.';
+import { TemperatureRange, Text } from '.';
 
 export default class TemperatureAggregated extends PureComponent {
     render() {
@@ -7,6 +7,7 @@ export default class TemperatureAggregated extends PureComponent {
 
         return (
             <div className="aggregated-temp">
+                <Text text="Min/Max temp next 5 days" />
                 <TemperatureRange
                     className="aggregated-min"
                     min={minLow}
