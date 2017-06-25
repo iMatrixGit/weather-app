@@ -1,6 +1,20 @@
 const Arrow = require('arrow');
 const request = require('request');
 const config = require('../config/config');
+const { getLocationFilter } = require('../utils/utils');
+
+const fetchForecastData = filter => new Promise((resolve, reject) => {
+    request({
+        uri: `${config.owmUrl}?${filter}&APPID=${config.owmKey}&units=${config.resUnits}&cnt=${config.resLimit}`,
+        json: true,
+    }, (err, response, body) => {
+        if (err) {
+            reject(err);
+        } else {
+            reject(body);
+        }
+    });
+});
 
 module.exports = server => new Arrow.API({
         group: 'forecast',
@@ -8,22 +22,10 @@ module.exports = server => new Arrow.API({
         method: 'GET',
         description: 'Get 5 day forecast',
         action: function(req, res, next) {
-            // TODO: Create helper function
-            const { lat, lon, name } = req.params;
-            let filter = '';
+            const filter = getLocationFilter(req.params);
 
-            if (name) {
-                filter = `q=${name}`;
-            } else {
-                filter = `lat=${lat}&lon=${lon}`;
-            }
-
-            // TODO: user Promises
-            request({
-                uri: `${config.owmUrl}?${filter}&APPID=${config.owmKey}&units=${config.resUnits}&cnt=${config.resLimit}`,
-                json: true,
-            }, (err, response, body) => {
-                next(null, body)
-            });
+           fetchForecastData(filter)
+               .then(response => next(null, response))
+               .catch(err => next(err));
         }
     }, server.config, server);

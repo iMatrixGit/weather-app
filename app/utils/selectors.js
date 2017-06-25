@@ -8,8 +8,8 @@ export const aggregatedTempSelector = createSelector(
             .sortBy(day => day.getIn(['temp', 'min']))
             .take(2).map(day => day.getIn(['temp', 'min']));
         const max = days
-            .sortBy(day => -day.getIn(['temp', 'max']))
-            .take(2).map(day => day.getIn(['temp', 'max']));
+            .sortBy(day => day.getIn(['temp', 'max']))
+            .takeLast(2).map(day => day.getIn(['temp', 'max']));
 
         return Immutable.Map({ min, max })
     }

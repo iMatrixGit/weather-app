@@ -29,6 +29,7 @@ server.app.get('/api/forecast', (req, res) => {
     server.getAPI('/api/getForecast', 'GET').execute({ lat, lon, name }, (err, apiResponse) => {
         if (err) {
             server.logger.error(err);
+            res.status(500).send('Internal server error')
         } else {
             res.status(200).json(apiResponse.result)
         }
