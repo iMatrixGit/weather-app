@@ -1,0 +1,1 @@
+export const CONSUME_CITY_DATA = 'CONSUME_CITY_DATA';
