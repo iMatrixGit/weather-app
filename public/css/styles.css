@@ -133,6 +133,7 @@ body {
     color: #fff;
     background: #088add;
     border: none;
+    cursor: pointer;
     transition: background-color .2s ease-in;
 }
 
@@ -142,6 +143,7 @@ body {
 
 .search-container .button.disabled {
     background-color: #8eabc3;
+    cursor: default;
 }
 
 .search-container .input {
