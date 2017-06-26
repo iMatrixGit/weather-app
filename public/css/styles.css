@@ -14,7 +14,7 @@ body {
     display: flex;
     align-items: center;
     position: relative;
-    min-height: 120px;
+    min-height: 135px;
     margin: 15px 0;
     border-radius: 3px;
     box-sizing: border-box;
