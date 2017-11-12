@@ -1,36 +1,30 @@
-import Immutable from 'immutable';
+import Immutable from 'immutable'
 import { CONSUME_FORECAST_DATA } from '../constants/forecast'
 
-const initialDailyForecastState = Immutable.Map({
-    'dt': null,
-    'temp': Immutable.Map({}),
-    'pressure': 936.02,
-    'humidity': 60,
-    'weather': Immutable.List([
-        Immutable.Map({
-            'id': 800,
-            'main': 'Clear',
-            'description': 'sky is clear',
-            'icon': '01d'
-        })
-    ]),
-    'speed': 2.87,
-    'deg': 309,
-    'clouds': 0
-});
+const parseDayData = ({dt, speed, temp, weather}) => {
+  const {min, max} = temp
+  const [info] = weather
+  const {description, icon} = info
+
+  return {dt, speed, min, max, description, icon}
+}
 
 const initialState = Immutable.Map({
-    days: Immutable.List()
-});
+  days: Immutable.List()
+})
+
+const parseDays = days => days.map(parseDayData)
 
 export default function (state = initialState, action) {
-    switch (action.type) {
-        case CONSUME_FORECAST_DATA:
-            state = state.set('days', Immutable.fromJS(action.payload.days));
-            break;
-        default:
-            break;
-    }
+  switch (action.type) {
+    case CONSUME_FORECAST_DATA:
+      state = state.mergeDeep({
+        days: parseDays(action.payload.days)
+      })
+      break
+    default:
+      break
+  }
 
-    return state;
+  return state
 }

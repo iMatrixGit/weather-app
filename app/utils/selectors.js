@@ -1,16 +1,15 @@
-import Immutable from 'immutable';
 import { createSelector } from 'reselect'
 
-export const aggregatedTempSelector = createSelector(
+export const aggregatedMaxTempSelector = createSelector(
     state => state.forecast.get('days'),
-    days => {
-        const min = days
-            .sortBy(day => day.getIn(['temp', 'min']))
-            .take(2).map(day => day.getIn(['temp', 'min']));
-        const max = days
-            .sortBy(day => day.getIn(['temp', 'max']))
-            .takeLast(2).map(day => day.getIn(['temp', 'max']));
+    days => days
+      .sortBy(day => day.get('max'))
+      .takeLast(2).map(day => day.get('max'))
+)
 
-        return Immutable.Map({ min, max })
-    }
-);
+export const aggregatedMinTempSelector = createSelector(
+  state => state.forecast.get('days'),
+  days => days
+    .sortBy(day => day.get('min'))
+    .take(2).map(day => day.get('min'))
+)

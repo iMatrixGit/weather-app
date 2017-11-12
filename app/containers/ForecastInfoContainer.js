@@ -19,18 +19,18 @@ class ForecastInfoContainer extends PureComponent {
     }
 
     renderDailyInfo(day) {
-        const { dt, speed, temp, weather } = day.toObject();
+        const dt = day.get('dt')
 
         return (
             <DailyInfo
                 key={dt}
                 title={getDayFullName(dt)}
                 date={getFormattedDate(dt)}
-                description={weather.getIn([0, 'description'])}
-                wind={speed}
-                icon={weather.getIn([0, 'icon'])}
-                tempMin={temp.get('min')}
-                tempMax={temp.get('max')}
+                description={day.get('description')}
+                wind={day.get('speed')}
+                icon={day.get('icon')}
+                tempMin={day.get('min')}
+                tempMax={day.get('max')}
             />
         )
     }
@@ -49,10 +49,6 @@ class ForecastInfoContainer extends PureComponent {
         );
     }
 }
-
-ForecastInfoContainer.defaultProps = {
-    'days': {}
-};
 
 ForecastInfoContainer.propTypes = {
     'days': PropTypes.object.isRequired

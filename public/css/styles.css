@@ -89,6 +89,7 @@ body {
 .temp-range .temp-max,
 .temp-range.aggregated-max .temp {
     color: #f1761c;
+    white-space: nowrap;
 }
 
 .temp-range.aggregated-min .temp{
