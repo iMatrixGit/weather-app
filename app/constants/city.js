@@ -1,1 +1,2 @@
 export const CONSUME_CITY_DATA = 'CONSUME_CITY_DATA';
+export const CLEAR_CITY_DATA = 'CLEAR_CITY_DATA';

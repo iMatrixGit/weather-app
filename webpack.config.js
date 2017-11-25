@@ -20,11 +20,7 @@ module.exports = {
                 use: [{
                     loader: 'babel-loader'
                 }],
-            },
-           {
-             test: require.resolve("react-addons-perf"),
-             loader: "expose?Perf"
-           }
+            }
         ]
     },
     plugins: removeEmpty([

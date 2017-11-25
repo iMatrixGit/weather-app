@@ -18,7 +18,7 @@ class ForecastInfoContainer extends PureComponent {
         fetchForecast({ by: 'location' });
     }
 
-    renderDailyInfo(day) {
+    renderDailyInfo(day, index) {
         const dt = day.get('dt')
 
         return (
